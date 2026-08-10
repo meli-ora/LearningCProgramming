@@ -12,6 +12,7 @@ gcc Lesson0/09_ifStatements.c -o Lesson0/09_ifStatements.exe -lm
 How to run the exe:
 ./Lesson0/09_ifStatements.exe
 
+https://www.youtube.com/watch?v=xND0t1pr3KY&t=5131s
 */
 
 #include <stdio.h>
