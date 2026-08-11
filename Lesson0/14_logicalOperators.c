@@ -32,7 +32,7 @@ comparison
 #include <stdio.h>
 
 int main() {
-
+    
     bool test = false;
 
     if (test) {

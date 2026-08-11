@@ -37,7 +37,7 @@ int main() {
 
     int base = 0;
     int exp = 0;
-
+    
     printf("input a base: ");
     scanf(" %d", &base);
 
