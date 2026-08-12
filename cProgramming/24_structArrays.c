@@ -1,26 +1,32 @@
-//260811 moved to codespace now
-/*
+/* 260812
 
-Terminal Instructions:
+gcc 24_structArrays.c -o 24_structArrays.exe -lm
+./24_structArrays.exe
 
-How to compile as exe:
-gcc cProgramming/24_structArrays.c -o cProgramming/24_structArrays.exe
+https://youtu.be/xND0t1pr3KY?is=mX0CmUuUxwM5tjxV
 
-Note for math library functions to be used I need to include "-lm" at the end of the command
-gcc cProgramming/24_structArrays.c -o cProgramming/24_structArrays.exe -lm
-
-How to run the exe:
-./cProgramming/24_structArrays.exe
-
-https://youtu.be/xND0t1pr3KY?t=20888&si=_wcaQnaW6Juz1iqd
 */
+
+typedef struct {
+    char model[25];
+    int year;
+    int price;
+} Car;
 
 #include <stdio.h>
 
+void printCarData(Car targetCar) {
+    printf("This %d %s costs $%d.\n", targetCar.year, targetCar.model, targetCar.price);
+}
+
 int main() {
 
-    printf("okay I will get back to this later lol");
+    Car carList[3] = {{"mazda", 2004, 42069}, {"mustang", 1988, 30000}, {"tesla", 2020, 55000}};
 
+    printCarData(carList[0]);
+    printCarData(carList[1]);
+    printCarData(carList[2]);
+    
     return 0;
 
 }
