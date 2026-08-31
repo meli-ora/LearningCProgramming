@@ -1,0 +1,50 @@
+link to the tutorial
+https://beej.us/guide/bgnet/html/#intro
+
+1: prerequisites
+
+#1, ignore all system header files, instead include winsock2 (new ver of windows socket library)
+```
+#include <winsock2.h>
+#include <ws2tcpip.h>
+```
+
+#1.1, do not use <windows.h>, but if you have to, do this since windows pulls winsock which conflict with winsock2
+```
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+```
+
+#2, before using the sockets library you have to make a call to WSAStartup(), pass in the winsock version 2.2, then check the result to make sure the version is there
+```
+#include <winsock2.h>
+
+{
+    WSADATA wsaData;
+
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        fprintf(stderr, "WSAStartup failed.\n");
+        exit(1);
+    }
+
+    if (LOBYTE(wsaData.wVersion) != 2 ||
+        HIBYTE(wsaData.wVersion) != 2)
+    {
+        fprintf(stderr,"Version 2.2 of Winsock not available.\n");
+        WSACleanup();
+        exit(2);
+    }
+```
+
+#3, "You also have to tell your compiler to link in the Winsock library, called ws2_32.lib for Winsock 2.
+Under VC++, this can be done through Project > Settings... > Link (tab) > Object/library modules > Add 'ws2_32.lib' to the list
+
+#4 other notes
+- can't use close() on a socket, you need to use closesocket()
+- select() only works with socket descriptors, not file descriptors (eg. 0 for stdin)
+- windows has no fork() system call which is used in the tutorials. you can either link in a POSIX library or use CreateProcess() or CreateThread() instead.
+- the socket examples ported to windows: https://www.tallyhawk.net/WinsockExamples/
+
+https://beej.us/guide/bgnet/html/#intro
+start on 2 next
